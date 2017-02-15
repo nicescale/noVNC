@@ -170,7 +170,7 @@ var UI;
 
             document.getElementById('noVNC_setting_host').focus();
 
-            var autoconnect = WebUtil.getConfigVar('autoconnect', false);
+            var autoconnect = WebUtil.getConfigVar('autoconnect', true);
             if (autoconnect === 'true' || autoconnect == '1') {
                 autoconnect = true;
                 UI.connect();
@@ -231,7 +231,7 @@ var UI;
             UI.initSetting('resize', 'off');
             UI.initSetting('shared', true);
             UI.initSetting('view_only', false);
-            UI.initSetting('path', 'websockify');
+            UI.initSetting('path', 'api/containers/' + WebUtil.getConfigVar('cid', '') + '/vnc');
             UI.initSetting('repeaterID', '');
             UI.initSetting('reconnect', false);
             UI.initSetting('reconnect_delay', 5000);
@@ -1047,7 +1047,7 @@ var UI;
         connect: function(event, password) {
             var host = UI.getSetting('host');
             var port = UI.getSetting('port');
-            var path = UI.getSetting('path');
+            var path = 'api/containers/' + WebUtil.getConfigVar('cid', '') + '/vnc';
 
             if (typeof password === 'undefined') {
                 password = WebUtil.getConfigVar('password');
